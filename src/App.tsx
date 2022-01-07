@@ -1,22 +1,31 @@
 import { FC } from 'react'
-import { Link, Slider, styled } from '@mui/material'
+import { styled } from '@mui/material'
+import { createTheme, ThemeProvider } from '@mui/material'
+import Header from '@/components/header'
+import Login from './pages/Login'
+import { AuthProvider } from './context/AuthContext'
 
-import Header from '@/header'
+const GPUTema = createTheme({
+  palette: {
+    primary: {
+      main: '#0033dd'
+    },
+    secondary: {
+      main: '#1CADF4'
+    }
+  }
+})
 
 const App: FC = () => {
   return (
-    <Root>
-      <Header />
-      <div>
-        <h2>
-          How much do you like{' '}
-          <Link href='https://vitejs.dev/' target='_blank' rel='noopener noreferrer'>
-            Vite?
-          </Link>
-        </h2>
-        <Slider />
-      </div>
-    </Root>
+    <AuthProvider>
+      <ThemeProvider theme={GPUTema}>
+        <Root>
+          <Header />
+          <Login />
+        </Root>
+      </ThemeProvider>
+    </AuthProvider>
   )
 }
 
